@@ -3,7 +3,7 @@ class MergeSort {
     // implement state as a stack to keep track of history
     this.state = [toSort];
 
-    // possible actions: split, compare, merge, swap
+    // possible actions: split, compare, merge, swap, finished
     this.nextAction = "split";
   }
 

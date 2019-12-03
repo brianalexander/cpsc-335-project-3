@@ -3,7 +3,7 @@ class QuickSort {
     // implement state as a stack to keep track of history
     this.state = [toSort];
 
-    // possible actions: pivot, compare, split, swap
+    // possible actions: pivot, compare, split, swap, finished
     this.nextAction = "pivot";
   }
 
