@@ -1,9 +1,17 @@
 class RaceManager {
   constructor(GUIManager = None, algorithms = {}) {
     this.algorithms = algorithms;
+
+    // set column index for use by the the gui manager
+    for (let i = 0; i < Object.keys(this.algorithms).length; i++) {
+      this.algorithms[algorithm].columnIndex = i;
+    }
+
     this.GUIManager = GUIManager;
   }
-
+  /*
+   *
+   */
   start() {
     let result;
 
