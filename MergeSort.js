@@ -7,6 +7,15 @@ class MergeSort {
     this.nextAction = "split";
   }
 
+  /**
+   * @function
+   * @name step
+   * @description Performs one step of the algorithm.
+   * @memberof MergeSort
+   * @returns {number} - Indicates the state of the
+   *      model, either 0->finished, 1->continue,
+   *      2->updateGUI
+   */
   step() {
     switch (this.nextAction) {
       case "finished":

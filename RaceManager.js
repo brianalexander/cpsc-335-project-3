@@ -9,8 +9,16 @@ class RaceManager {
 
     this.GUIManager = GUIManager;
   }
-  /*
+
+  /**
+   * @function
+   * @name start
+   * @description This is the main loop for RaceManager.
+   *      Runs until all of the algorithms are in a
+   *      finished state.
    *
+   * @memberof RaceManager
+   * @returns {None}
    */
   start() {
     let result;
