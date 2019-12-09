@@ -1,24 +1,89 @@
 class QuickSort {
-  constructor(toSort) {
-    // implement state as a stack to keep track of history
-    this.state = [toSort];
+  queue = new Array();
+  i = 0;
+  j = 0;
+  p = 0;
+  arr = new Array();
 
-    // possible actions: pivot, compare, split, swap, finished
-    this.nextAction = "pivot";
+
+  constructor(toSort) {
+    //queue of partitions to sort
+    this.queue.push([0, toSort.length-1]);
+    //index i & start of the partition
+    this.i = this.start = 0;
+    //index j & end of the partition
+    this.j = toSort.length-2;
+    //Pivot
+    this.p = this.end = toSort.length-1
+    //Entire array being sorted
+    this.arr = toSort;
+  }
+
+  nextItem() {
+    this.queue.shift();
+    //console.log("queue length:"+this.queue.length);
+    console.log(this.queue.length === 0)
+    //Check if queue is empty
+    if (this.queue.length === 0) {
+      //Sort is finished
+      return 0;
+    }
+    this.i = this.start = this.queue[0][0];
+    this.j = this.queue[0][1] - 1;
+    this.p = this.end = this.queue[0][1];
+
+    //Not done sorting
+    return 3;
+  }
+
+  swap(p1,p2) {
+    console.log("Swapping index "+p1+":"+this.arr[p1]+" and index "+p2+":"+this.arr[p2]);
+    let v = this.arr[p1];
+    this.arr[p1] = this.arr[p2];
+    this.arr[p2] = v;
   }
 
   step() {
-    switch (this.nextAction) {
-      case "finished":
-        return 0;
-      case "pivot":
+    //Check if partition is only one index,
+    if (this.queue[0][0] >= this.queue[0][1]) {
+      //Set up next partition
+      return this.nextItem();;
+    }
+
+    //Check i position has not passed j position
+    if (this.i <= this.j) {
+      //Check if value at i is less than the pivot
+      if(this.arr[this.i] <= this.arr[this.p]) {
+        //Increment i position
+        this.i++;
+        //Continue
         return 1;
-      case "compare":
-        return 1;
-      case "split":
-        return 1;
-      case "swap":
-        return 2;
+      }
+      else {
+        //i is ready to swap, check if j is greater than the pivot
+        if (this.arr[this.j] >= this.arr[this.p]) {
+          //Increment j position
+          this.j--;
+          //Continue
+          return 1;
+        }
+        else {
+          //i and j swap values
+          console.log("Swapping i and j");
+          this.swap(this.i, this.j);
+          return 2;
+        }
+      }
+    }
+    else {
+      //i and p swap values
+      console.log("Swapping i and p");
+      this.swap(this.i, this.p);
+      //console.log(this.start+" "+this.j);
+      this.queue.push([this.start, this.j]);
+      //console.log((this.i+1)+" "+this.end);
+      this.queue.push([this.i+1, this.end]);
+      return this.nextItem();
     }
   }
 }
