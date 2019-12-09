@@ -1,0 +1,29 @@
+<html>
+<meta charset="utf-8"/>
+
+</html>
+
+<script src="./QuickSort.js"></script>
+
+<script>
+
+let qsArray = new QuickSort(['0', 'B', 'A', '3', '2', '8', '4', '7', '6', '5', '1', '9']);
+console.log(qsArray.arr);
+
+let intvl = {id:0}
+
+function teststep(interval) {
+    let result = 1;
+
+    result = qsArray.step();
+    console.log(qsArray.arr);
+    console.log("return value:"+result);
+    if(result == 0) {
+        clearInterval(interval.id);
+    }
+}
+
+intvl.id = setInterval(teststep, 500, intvl);
+
+</script>
+
