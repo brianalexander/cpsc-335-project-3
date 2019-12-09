@@ -18,6 +18,11 @@ class SelectionSort {
     }
   }
 }
+function swap(arr, firstIndex, secondIndex){
+  var temp = arr[firstIndex];
+  arr[firstIndex] = arr[secondIndex];
+  arr[secondIndex] = temp;
+}
 
 function selection_sort(arr) {
   var size = arr.length;
@@ -28,17 +33,17 @@ function selection_sort(arr) {
     min = i;
     //iterate through array to see if items < than ith element
     for (j=i+1; j < size; j++){
-        if (items[j] < items[min]){
+        if (arr[j] < arr[min]){
             min = j;
         }
     }
 
     //if the minimum isn't in the position, swap it
     if (i != min){
-        swap(items, i, min);
+        swap(arr, i, min);
     }
   }
-  return items;
+  return arr;
 }
 
 function swap(arr, firstIndex, secondIndex){
@@ -47,4 +52,4 @@ function swap(arr, firstIndex, secondIndex){
   arr[secondIndex] = temp;
 }
 
-console.log(selection_sort([ 4,3,5,2 ]))
+console.log(selection_sort([ 19, 9, 8, 7, 6, 5, 6, 6, 4,3,5,2 ]))
