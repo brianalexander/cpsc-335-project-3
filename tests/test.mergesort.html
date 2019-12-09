@@ -1,0 +1,37 @@
+<html>
+  <meta charset="utf-8" />
+</html>
+
+<script src="../MergeSort.js"></script>
+
+<script>
+  const mergeSort = new MergeSort([
+    "0",
+    "B",
+    "A",
+    "3",
+    "2",
+    "8",
+    "4",
+    "7",
+    "6",
+    "5",
+    "1",
+    "9"
+  ]);
+  const interval = setInterval(test, 500);
+
+  function test() {
+    let result = 1;
+
+    result = mergeSort.step();
+    console.log("queue", mergeSort.queue);
+    console.log("array1", mergeSort.array1);
+    console.log("array2", mergeSort.array2);
+    console.log("working state", mergeSort.workingArray);
+    console.log("return value:" + result);
+    if (result == 0) {
+      clearInterval(interval);
+    }
+  }
+</script>
