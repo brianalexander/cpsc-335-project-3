@@ -23,9 +23,16 @@ class GUIManager {
    * @param {Number} a index of item to swap.
    * @param {Number} b index of item to swap.
    */
-  updateRow(id, a, b) {
-    // TODO
+  updateRow(id, a, b, newArray) {
+    this.highlight(id, a, this.oldArray[a]);
+    this.highlight(id, b, this.oldArray[b])
+    this.drawArray(id, newArray)
+    this.oldArray = newArray;
   }
+
+  highlight(id, index, id);
+
+  drawArray(id, array);
 
   /**
    * @function
@@ -35,7 +42,10 @@ class GUIManager {
    * @memberof GUIManager
    * @param {Number} id ID for the algorithm to add a row.
    */
-  addRow(id) {
+  addRow(id, array) {
+    this.oldArray = array;
+    row[id]++;
+    this.drawArray(id, array);
     // TODO
   }
 }

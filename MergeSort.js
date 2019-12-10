@@ -3,6 +3,10 @@ class MergeSort {
     // implement state as a stack to keep track of history
     this.queue = toSort.map(item => [item]);
 
+    this.array = toSort;
+    this.currentSegmentBeginIndex = 0;
+    this.currentSegmentLength = 1;
+
     this.array1 = this.queue.shift();
     this.array2 = this.queue.shift();
     this.i = 0;
@@ -29,11 +33,16 @@ class MergeSort {
         return 0;
       }
 
+      this.currentSegmentBeginIndex =
+        this.currentSegmentBeginIndex + this.currentSegmentLength;
+
       this.i = 0;
       this.j = 0;
       this.array1 = this.queue.shift();
       this.array2 = this.queue.shift();
       this.workingArray = [];
+
+      this.currentSegmentLength = this.array1.length = this.array2.length;
     }
 
     // i is finished, add the next j
