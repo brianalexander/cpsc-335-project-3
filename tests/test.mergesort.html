@@ -19,16 +19,24 @@
     "1",
     "9"
   ]);
-  const interval = setInterval(test, 500);
+  const interval = setInterval(test, 1000);
 
   function test() {
     let result = 1;
 
     result = mergeSort.step();
-    console.log("queue", mergeSort.queue);
-    console.log("array1", mergeSort.array1);
-    console.log("array2", mergeSort.array2);
-    console.log("working state", mergeSort.workingArray);
+    // console.log("queue item1", mergeSort.queue[0]);
+    // console.log("queue item2", mergeSort.queue[1]);
+    let indexLen = [];
+    for (let i = 0; i < mergeSort.queue.length; i++) {
+      indexLen.push(mergeSort.queue[i][0][0]);
+      indexLen.push(mergeSort.queue[i][0][1]);
+    }
+    // console.log("index-lens", indexLen);
+    // console.log("array2", mergeSort.array2);
+    // console.log("working state", mergeSort.workingArray);
+    console.log("working state", mergeSort.arr);
+    // console.log("working state", mergeSort.workingArray);
     console.log("return value:" + result);
     if (result == 0) {
       clearInterval(interval);
