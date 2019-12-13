@@ -1,20 +1,25 @@
 class GUIManager {
-  constructor(width, height, numberOfAlgorithms) {}
+  constructor(width, height, numberOfAlgorithms) {
 
-  var row = new Array(numberOfAlgorithms);
-  for(i = 0; i < row.size(); i++){
-    row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
+    this.width = width;
+    this.height = height;
+    this.numberOfAlgorithms = numberOfAlgorithms;
+
+    let row = new Array(numberOfAlgorithms);
+    for(i = 0; i < row.size(); i++){
+      row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
+    }
+
+    let col = new Array(numberOfAlgorithms);
+    let pix = 0;
+    for(i = 0; i < col.size(); i++){
+      col[i] = pix;
+      pix += 520; // still finding arithmetic to get the right pixel increment given numalg and canvas.width
+    }
+
+    let sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
+
   }
-
-  var col = new Array(numberOfAlgorithms);
-  var pix = 0;
-  for(i = 0; i < col.size(); i++){
-    col[i] = pix;
-    pix += 520; // still finding arithmetic to get the right pixel increment given numalg and canvas.width
-  }
-
-  var sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
-
   /**
    * @function
    * @name init
@@ -26,15 +31,15 @@ class GUIManager {
    */
   init(width, height, columns) {
     // dont think we need columns but let me know your thoughts
-    var canvas = document.createElement("canvas");
+    let canvas = document.createElement("canvas");
     canvas.id = "globalCanvas";
     document.body.appendChild(canvas);
 
-    var canv = document.getElementById("globalCanvas");
-    var ctx = canv.getContext("2d");
+    let canv = document.getElementById("globalCanvas");
+    let ctx = canv.getContext("2d");
     ctx.fillStyle = "black";
     canv.width = width;
-    cant.height = height;
+    canv.height = height;
     ctx.fillRect(0, 0, canv.width, canv.height);
   }
 
@@ -79,6 +84,20 @@ class GUIManager {
     ctx.restore();
   }
 
+  /**
+   * @function
+   * @name addRow
+   * @description Copies the current array state to
+   *    a new line.
+   * @memberof GUIManager
+   * @param {Number} id ID for the algorithm to add a row.
+   */
+  addRow(id, array) {
+    this.oldArray = array;
+    row[id]++;
+    this.drawArray(id, array);
+  }
+
   drawArray(id, array){
     switch(id) {
       case 1:
@@ -102,18 +121,5 @@ class GUIManager {
       ctx.stroke();
     }
   }
-
-  /**
-   * @function
-   * @name addRow
-   * @description Copies the current array state to
-   *    a new line.
-   * @memberof GUIManager
-   * @param {Number} id ID for the algorithm to add a row.
-   */
-  addRow(id, array) {
-    this.oldArray = array;
-    row[id]++;
-    this.drawArray(id, array);
-  }
 }
+
