@@ -37,14 +37,6 @@ class SelectionSort {
         this.min = this.index;
         this.current = this.index+1;
       }
-
-
-
-      
-
-      // compare 
-   
-      // if the index element is bigger than the minimum value in the array we need to swap because index should be the smallest
       
     }
     
@@ -55,35 +47,3 @@ class SelectionSort {
     }
   }
 }
-
-
-
-
-
-/*function swap(arr, firstIndex, secondIndex){
-  var temp = arr[firstIndex];
-  arr[firstIndex] = arr[secondIndex];
-  arr[secondIndex] = temp;
-}
-
-function selection_sort(arr) {
-  var size = arr.length;
-  var min; 
-  //iterate through array
-  for (i=0; i < size; i++){
-    //set minimum to ith position
-    min = i;
-    //iterate through array to see if items < than ith element
-    for (j=i+1; j < size; j++){
-        if (arr[j] < arr[min]){
-            min = j;
-        }
-    }
-    //if the minimum isn't in the position, swap it
-    if (i != min){
-        swap(arr, i, min);
-    }
-  }
-  return arr;
-}
-*/

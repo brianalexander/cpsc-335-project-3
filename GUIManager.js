@@ -6,13 +6,13 @@ class GUIManager {
     this.numberOfAlgorithms = numberOfAlgorithms;
 
     this.row = new Array(numberOfAlgorithms);
-    for(i = 0; i < this.row.length; i++){
+    for(let i = 0; i < this.row.length; i++){
       this.row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
     }
 
     this.col = new Array(numberOfAlgorithms);
     let pix = 0;
-    for(i = 0; i < this.col.length; i++){
+    for(let i = 0; i < this.col.length; i++){
       this.col[i] = pix;
       pix += 520; // still finding arithmetic to get the right pixel increment given numalg and canvas.width
     }
@@ -113,7 +113,7 @@ class GUIManager {
     ctx.fillStyle = "#ffffff";  // white
     ctx.strokeStyle = "#000000";  // black(dont need this since canvas is set to black)
     var pixel = this.col[id];  // get the algorithm's start pixel
-    for (i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
       ctx.rect(pixel + (i * this.sqr), this.row[id], this.sqr, this.sqr); // place the sqr
       ctx.fillText(array[i], pixel + (i * this.sqr) + (this.sqr / 2), this.row[id] + (this.sqr / 2)); // place the index value inside the sqr
       pixel += this.sqr; // get the coordinate for the next sqr

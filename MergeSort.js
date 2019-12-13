@@ -114,7 +114,3 @@ class SelectionSort{
     this.min = 0;
   }
 }
-
-step() {
-  
-}
