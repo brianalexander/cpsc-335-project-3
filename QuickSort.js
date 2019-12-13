@@ -1,10 +1,5 @@
 class QuickSort {
   queue = new Array();
-  i = 0;
-  j = 0;
-  p = 0;
-  arr = new Array();
-
 
   constructor(toSort) {
     //queue of partitions to sort
@@ -17,6 +12,10 @@ class QuickSort {
     this.p = this.end = toSort.length-1
     //Entire array being sorted
     this.arr = toSort;
+
+    //indexes for the race manager to pass to GUI updates
+    this.a = 0;
+    this.b = 0;
   }
 
   nextItem() {
@@ -41,6 +40,8 @@ class QuickSort {
     let v = this.arr[p1];
     this.arr[p1] = this.arr[p2];
     this.arr[p2] = v;
+    this.a = p1;
+    this.b = p2;
   }
 
   step() {

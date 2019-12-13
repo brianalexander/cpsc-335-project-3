@@ -16,7 +16,7 @@ function teststep(interval) {
     let result = 1;
 
     result = qsArray.step();
-    console.log(qsArray.arr);
+    console.log(qsArray.arr.toString());
     console.log("return value:"+result);
     if(result == 0) {
         clearInterval(interval.id);
