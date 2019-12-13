@@ -1,20 +1,19 @@
 class GUIManager {
-  constructor(width, height, numberOfAlgorithms) {}
+  constructor(width, height, numberOfAlgorithms) {
+    let row = new Array(numberOfAlgorithms);
+    for (i = 0; i < row.size(); i++) {
+      row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
+    }
 
-  var row = new Array(numberOfAlgorithms);
-  for(i = 0; i < row.size(); i++){
-    row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
+    let col = new Array(numberOfAlgorithms);
+    let pix = 0;
+    for (i = 0; i < col.size(); i++) {
+      col[i] = pix;
+      pix += 520; // still finding arithmetic to get the right pixel increment given numalg and canvas.width
+    }
+
+    let sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
   }
-
-  var col = new Array(numberOfAlgorithms);
-  var pix = 0;
-  for(i = 0; i < col.size(); i++){
-    col[i] = pix;
-    pix += 520; // still finding arithmetic to get the right pixel increment given numalg and canvas.width
-  }
-
-  var sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
-
   /**
    * @function
    * @name init
@@ -26,12 +25,12 @@ class GUIManager {
    */
   init(width, height, columns) {
     // dont think we need columns but let me know your thoughts
-    var canvas = document.createElement("canvas");
+    let canvas = document.createElement("canvas");
     canvas.id = "globalCanvas";
     document.body.appendChild(canvas);
 
-    var canv = document.getElementById("globalCanvas");
-    var ctx = canv.getContext("2d");
+    let canv = document.getElementById("globalCanvas");
+    let ctx = canv.getContext("2d");
     ctx.fillStyle = "black";
     canv.width = width;
     cant.height = height;
@@ -49,13 +48,13 @@ class GUIManager {
    */
   updateRow(id, a, b, newArray) {
     this.highlight(id, a, this.oldArray[a]);
-    this.highlight(id, b, this.oldArray[b])
-    this.drawArray(id, newArray)
+    this.highlight(id, b, this.oldArray[b]);
+    this.drawArray(id, newArray);
     this.oldArray = newArray;
   }
 
-  highlight(id, index, val){
-    switch(id) {
+  highlight(id, index, val) {
+    switch (id) {
       case 0:
         highlightHelper(id, index, val);
       case 1:
@@ -66,41 +65,17 @@ class GUIManager {
   }
 
   highlightHelper(id, index, val) {
-    ctx.clearRect(col[id] + (index * sqr), row[id], sqr, sqr);  // clear the un-highlighted sqr
-    ctx.strokeStyle = "#ffff00";  // yellow
-    ctx.fillStyle = "#ffffff";  // white
+    ctx.clearRect(col[id] + index * sqr, row[id], sqr, sqr); // clear the un-highlighted sqr
+    ctx.strokeStyle = "#ffff00"; // yellow
+    ctx.fillStyle = "#ffffff"; // white
     ctx.save();
     ctx.beginPath();
-    ctx.rect(col[id] + (index * sqr), row[id], sqr, sqr); // place the new highlighted sqr
-    ctx.fillText(val, col[id] + (index * sqr) + (sqr / 2), row[id] + (sqr / 2);  // place the index value in the middle of sqr
+    ctx.rect(col[id] + index * sqr, row[id], sqr, sqr); // place the new highlighted sqr
+    ctx.fillText(val, col[id] + index * sqr + sqr / 2, row[id] + sqr / 2); // place the index value in the middle of sqr
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
     ctx.restore();
-  }
-
-  drawArray(id, array){
-    switch(id) {
-      case 1:
-        drawArrayHelper(id, array);
-      case 2:
-        drawArrayHelper(id, array);
-      case 3:
-        drawArrayHelper(id, array);
-    }
-  }
-
-  drawArrayHelper(id, array) {
-    ctx.fillStyle = "#ffffff";  // white
-    ctx.strokeStyle = "#000000";  // black(dont need this since canvas is set to black)
-    var pixel = col[id];  // get the algorithm's start pixel
-    for (i = 0; i < array.size(); i++) {
-      ctx.rect(pixel + (i * sqr), row[id], sqr, sqr); // place the sqr
-      ctx.fillText(array[i], pixel + (i * sqr) + (sqr / 2), row[id] + (sqr / 2)); // place the index value inside the sqr
-      pixel += sqr; // get the coordinate for the next sqr
-      ctx.fill();
-      ctx.stroke();
-    }
   }
 
   /**
@@ -115,5 +90,29 @@ class GUIManager {
     this.oldArray = array;
     row[id]++;
     this.drawArray(id, array);
+  }
+
+  drawArray(id, array) {
+    switch (id) {
+      case 1:
+        drawArrayHelper(id, array);
+      case 2:
+        drawArrayHelper(id, array);
+      case 3:
+        drawArrayHelper(id, array);
+    }
+  }
+
+  drawArrayHelper(id, array) {
+    ctx.fillStyle = "#ffffff"; // white
+    ctx.strokeStyle = "#000000"; // black(dont need this since canvas is set to black)
+    var pixel = col[id]; // get the algorithm's start pixel
+    for (i = 0; i < array.size(); i++) {
+      ctx.rect(pixel + i * sqr, row[id], sqr, sqr); // place the sqr
+      ctx.fillText(array[i], pixel + i * sqr + sqr / 2, row[id] + sqr / 2); // place the index value inside the sqr
+      pixel += sqr; // get the coordinate for the next sqr
+      ctx.fill();
+      ctx.stroke();
+    }
   }
 }
