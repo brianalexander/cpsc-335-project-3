@@ -5,6 +5,10 @@ class SelectionSort {
 
     // possible actions: compare, swap, finished
     this.nextAction = "compare";
+
+    //Indexes that have been updated
+    this.a = 0;
+    this.b = 0;
   }
 
   step() {
@@ -50,6 +54,8 @@ function swap(arr, firstIndex, secondIndex){
   var temp = arr[firstIndex];
   arr[firstIndex] = arr[secondIndex];
   arr[secondIndex] = temp;
+  this.a = firstIndex;
+  this.b = secondIndex;
 }
 
 console.log(selection_sort([ 19, 9, 8, 7, 6, 5, 6, 6, 4,3,5,2 ]))
