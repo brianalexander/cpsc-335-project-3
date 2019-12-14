@@ -22,7 +22,7 @@ class RaceManager {
    * @returns {None}
    */
   start() {
-    this.GUIManager.init(1520, 800, 12);
+    this.GUIManager.init(12);
 
     for (const algorithm in this.algorithms) {
       console.log(
@@ -35,17 +35,13 @@ class RaceManager {
       );
     }
 
-    this.loopInterval = setInterval(this.mainLoop, 2000);
-
-    // while there are algorithms still running
-    // while (Object.keys(this.algorithms).length > 0) {}
+    this.loopInterval = setInterval(this.mainLoop, 500);
   }
 
   mainLoop = () => {
-    let result;
-
     for (const algorithm in this.algorithms) {
-      result = this.algorithms[algorithm].step();
+      let result = this.algorithms[algorithm].step();
+      console.log(result);
 
       if (result === 0) {
         // stop iterating on algorithm
@@ -61,6 +57,9 @@ class RaceManager {
         );
       } else if (result === 3) {
         console.log("adding a new row");
+        // if(algorithm === "MergeSort") {
+        //   console.log(this.algorithms[algorithm].arr)
+        // }
         this.GUIManager.addRow(
           this.algorithms[algorithm].columnIndex,
           this.algorithms[algorithm].arr
