@@ -11,6 +11,10 @@ class SelectionSort {
 
   }
 
+  getArray() {
+    return this.arr;
+  }
+
   step() {
     //checks if gone beyond bounds i.e done
     if (this.index >= this.length) {

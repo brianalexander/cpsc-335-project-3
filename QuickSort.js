@@ -19,6 +19,10 @@ class QuickSort {
     this.b = 0;
   }
 
+  getArray() {
+    return this.arr;
+  }
+
   nextItem() {
     this.queue.shift();
     //console.log("queue length:"+this.queue.length);

@@ -20,7 +20,7 @@ class GUIManager {
 
     this.sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
 
-    this.oldArray = [[],[],[]];
+    this.oldArray = new Array(numberOfAlgorithms);
   }
   /**
    * @function
