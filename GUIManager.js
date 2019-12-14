@@ -7,7 +7,7 @@ class GUIManager {
 
     this.row = new Array(numberOfAlgorithms);
     for(let i = 0; i < this.row.length; i++){
-      this.row[i] = 40; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
+      this.row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
     }
 
     this.col = new Array(numberOfAlgorithms);
@@ -69,9 +69,9 @@ class GUIManager {
    * @param {Number} b index of item to swap.
    */
   updateRow(id, a, b, newArray) {
+    this.drawArray(id, newArray);
     this.highlight(id, a, this.oldArray[a]);
-    this.highlight(id, b, this.oldArray[b])
-    this.drawArray(id, newArray)
+    this.highlight(id, b, this.oldArray[b]);
     this.oldArray = newArray;
   }
 
@@ -107,8 +107,8 @@ class GUIManager {
    * @param {Number} id ID for the algorithm to add a row.
    */
   addRow(id, array) {
+    this.row[id] += this.sqr;
     this.oldArray = array;
-    this.row[id]++;
     this.drawArray(id, array);
   }
 

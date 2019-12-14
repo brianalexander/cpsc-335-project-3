@@ -7,6 +7,8 @@ class MergeSort {
     this.array = toSort;
 
     this.firstRun = true;
+
+    this.a = this.b = 0;
   }
 
   /**
@@ -62,10 +64,10 @@ class MergeSort {
 
       // Null out working values of this.arr
       for (let i = this.startIndex1; i < this.endIndex1; i++) {
-        this.arr[i] = null;
+        this.arr[i] = "";
       }
       for (let i = this.startIndex2; i < this.endIndex2; i++) {
-        this.arr[i] = null;
+        this.arr[i] = "";
       }
 
       return 3;
@@ -76,6 +78,7 @@ class MergeSort {
       this.workingArray.push(this.array2[this.j]);
       this.arr[this.arrWorkingIndex] = this.array2[this.j];
       this.arrWorkingIndex++;
+      this.a = this.b = this.j;
       this.j++;
       return 2;
     }
@@ -85,6 +88,7 @@ class MergeSort {
       this.workingArray.push(this.array1[this.i]);
       this.arr[this.arrWorkingIndex] = this.array1[this.i];
       this.arrWorkingIndex++;
+      this.a = this.b = this.i;
       this.i++;
       return 2;
     }
@@ -94,23 +98,16 @@ class MergeSort {
       this.workingArray.push(this.array1[this.i]);
       this.arr[this.arrWorkingIndex] = this.array1[this.i];
       this.arrWorkingIndex++;
+      this.a = this.b = this.i;
       this.i++;
       return 2;
     } else {
       this.workingArray.push(this.array2[this.j]);
       this.arr[this.arrWorkingIndex] = this.array2[this.j];
       this.arrWorkingIndex++;
+      this.a = this.b = this.j;
       this.j++;
       return 2;
     }
-  }
-}
-
-class SelectionSort{
-  constructor(toSort){
-    //implement state as a stack to keep track of state
-    this.i = 0;
-    this.j = 0;
-    this.min = 0;
   }
 }
