@@ -78,7 +78,6 @@ class MergeSort {
       this.workingArray.push(this.array2[this.j]);
       this.arr[this.arrWorkingIndex] = this.array2[this.j];
       this.arrWorkingIndex++;
-      this.a = this.b = this.j;
       this.j++;
       return 2;
     }
@@ -88,7 +87,6 @@ class MergeSort {
       this.workingArray.push(this.array1[this.i]);
       this.arr[this.arrWorkingIndex] = this.array1[this.i];
       this.arrWorkingIndex++;
-      this.a = this.b = this.i;
       this.i++;
       return 2;
     }
@@ -98,14 +96,12 @@ class MergeSort {
       this.workingArray.push(this.array1[this.i]);
       this.arr[this.arrWorkingIndex] = this.array1[this.i];
       this.arrWorkingIndex++;
-      this.a = this.b = this.i;
       this.i++;
       return 2;
     } else {
       this.workingArray.push(this.array2[this.j]);
       this.arr[this.arrWorkingIndex] = this.array2[this.j];
       this.arrWorkingIndex++;
-      this.a = this.b = this.j;
       this.j++;
       return 2;
     }
