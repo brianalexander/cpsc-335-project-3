@@ -7,7 +7,7 @@ class RaceManager {
       this.algorithms[algorithm].columnIndex = i;
     }
 
-    this.GUIManager = GUIManager;
+    this.GUIManager = new GUIManager(1800, 800, 3);
   }
 
   /**
@@ -27,12 +27,23 @@ class RaceManager {
     while (Object.keys(this.algorithms).length > 0) {
       for (const algorithm in this.algorithms) {
         result = this.algorithms[algorithm].step();
+
         if (result === 0) {
-          // stop iterating on the algorithm
+          // stop iterating on algorithm
           delete this.algorithms[algorithm];
         } else if (result === 2) {
-          // call update and pass the algorithm object
-          this.GUIManager.update(this.algorithms[algorithm]);
+          // update row
+          this.GUIManager.updateRow(
+            this.algorithms[algorithm].id,
+            this.algorithms[algorithm].a,
+            this.algorithms[algorithm].b,
+            this.algorithms[algorithm].arr
+          );
+        } else if (result === 3) {
+          this.GUIManager.addRow(
+            this.algorithms[algorithm].id,
+            this.algorithms[algorithm].arr
+          );
         }
       }
     }
