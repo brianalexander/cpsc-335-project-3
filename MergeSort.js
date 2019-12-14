@@ -4,11 +4,13 @@ class MergeSort {
     this.queue = toSort.map((item, index) => [[index, 1], [item]]);
     this.arr = toSort;
 
-    this.array = toSort;
-
     this.firstRun = true;
 
     this.a = this.b = 0;
+  }
+
+  getArray() {
+    return this.arr;
   }
 
   /**

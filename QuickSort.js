@@ -19,6 +19,10 @@ class QuickSort {
     this.b = 0;
   }
 
+  getArray() {
+    return this.arr;
+  }
+
   nextItem() {
     this.queue.shift();
     //console.log("queue length:"+this.queue.length);
@@ -57,6 +61,7 @@ class QuickSort {
   step() {
     //Check if partition is only one index,
     if (this.queue[0][0] >= this.queue[0][1]) {
+      this.a = this.b = this.queue[0][0];
       //Set up next partition
       return this.nextItem();
     }

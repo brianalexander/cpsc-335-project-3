@@ -18,6 +18,8 @@ class GUIManager {
     }
 
     this.sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
+
+    this.oldArray = new Array(numberOfAlgorithms);
   }
   /**
    * @function
@@ -83,9 +85,9 @@ class GUIManager {
    */
   updateRow(id, a, b, newArray) {
     this.drawArray(id, newArray);
-    this.highlight(id, a, this.oldArray[a]);
-    this.highlight(id, b, this.oldArray[b]);
-    this.oldArray = newArray;
+    this.highlight(id, a, this.oldArray[id][a]);
+    this.highlight(id, b, this.oldArray[id][b]);
+    this.oldArray[id] = newArray;
   }
 
   highlight(id, index, val, ctx = this.ctx) {
@@ -127,7 +129,7 @@ class GUIManager {
    */
   addRow(id, array) {
     this.row[id] += this.sqr;
-    this.oldArray = array;
+    this.oldArray[id] = array;
     this.drawArray(id, array);
   }
 

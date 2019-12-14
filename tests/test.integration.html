@@ -9,12 +9,12 @@
 <script src="../GUIManager.js"></script>
 
 <script>
-  let arr = ["0", "B", "A", "3", "2", "8", "4", "7", "6", "5", "1", "9"];
-  let GUI = new GUIManager(1800, 800, 3);
+  //let arr = ["0", "B", "A", "3", "2", "8", "4", "7", "6", "5", "1", "9"];
+  let GUI = new GUIManager(1520, 800, 3);
   let algos = {
-    MergeSort: new MergeSort(arr),
-    QuickSort: new QuickSort(arr),
-    SelectionSort: new SelectionSort(arr)
+    MergeSort: new MergeSort(["0", "B", "A", "3", "2", "8", "4", "7", "6", "5", "1", "9"]),
+    QuickSort: new QuickSort(["0", "B", "A", "3", "2", "8", "4", "7", "6", "5", "1", "9"]),
+    SelectionSort: new SelectionSort(["0", "B", "A", "3", "2", "8", "4", "7", "6", "5", "1", "9"])
   };
 
   let raceManager = new RaceManager(GUI, algos);

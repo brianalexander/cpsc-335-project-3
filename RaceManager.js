@@ -27,11 +27,11 @@ class RaceManager {
     for (const algorithm in this.algorithms) {
       console.log(
         this.algorithms[algorithm].columnIndex,
-        this.algorithms[algorithm].arr
+        this.algorithms[algorithm].getArray().toString()
       );
       this.GUIManager.addRow(
         this.algorithms[algorithm].columnIndex,
-        this.algorithms[algorithm].arr
+        this.algorithms[algorithm].getArray()
       );
     }
 
@@ -53,16 +53,23 @@ class RaceManager {
           this.algorithms[algorithm].columnIndex,
           this.algorithms[algorithm].a,
           this.algorithms[algorithm].b,
-          this.algorithms[algorithm].arr
+          this.algorithms[algorithm].getArray()
         );
       } else if (result === 3) {
-        console.log("adding a new row");
-        // if(algorithm === "MergeSort") {
-        //   console.log(this.algorithms[algorithm].arr)
-        // }
+        // update row
+        if(this.algorithms[algorithm].columnIndex != 0) {
+          console.log("highlighting");
+          this.GUIManager.updateRow(
+            this.algorithms[algorithm].columnIndex,
+            this.algorithms[algorithm].a,
+            this.algorithms[algorithm].b,
+            this.algorithms[algorithm].getArray()
+          );
+        }
+
         this.GUIManager.addRow(
           this.algorithms[algorithm].columnIndex,
-          this.algorithms[algorithm].arr
+          this.algorithms[algorithm].getArray()
         );
       }
     }
