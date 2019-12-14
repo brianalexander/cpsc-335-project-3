@@ -22,7 +22,7 @@ class QuickSort {
   nextItem() {
     this.queue.shift();
     //console.log("queue length:"+this.queue.length);
-    console.log(this.queue.length === 0);
+    // console.log(this.queue.length === 0);
     //Check if queue is empty
     if (this.queue.length === 0) {
       //Sort is finished
@@ -37,16 +37,16 @@ class QuickSort {
   }
 
   swap(p1, p2) {
-    console.log(
-      "Swapping index " +
-        p1 +
-        ":" +
-        this.arr[p1] +
-        " and index " +
-        p2 +
-        ":" +
-        this.arr[p2]
-    );
+    // console.log(
+    //   "Swapping index " +
+    //     p1 +
+    //     ":" +
+    //     this.arr[p1] +
+    //     " and index " +
+    //     p2 +
+    //     ":" +
+    //     this.arr[p2]
+    // );
     let v = this.arr[p1];
     this.arr[p1] = this.arr[p2];
     this.arr[p2] = v;
@@ -78,14 +78,14 @@ class QuickSort {
           return 1;
         } else {
           //i and j swap values
-          console.log("Swapping i and j");
+          // console.log("Swapping i and j");
           this.swap(this.i, this.j);
           return 2;
         }
       }
     } else {
       //i and p swap values
-      console.log("Swapping i and p");
+      // console.log("Swapping i and p");
       this.swap(this.i, this.p);
       //console.log(this.start+" "+this.j);
       this.queue.push([this.start, this.j]);
