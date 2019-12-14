@@ -29,7 +29,7 @@ class GUIManager {
    * @param {Number} columns number of columns
    * @memberof GUIManager
    */
-  init(width, height, columns) {
+  init(length) {
     // dont think we need columns but let me know your thoughts
     let canvas = document.createElement("canvas");
     canvas.id = "globalCanvas";
@@ -40,11 +40,11 @@ class GUIManager {
     this.ctx = canv.getContext("2d");
     this.ctx.fillStyle = "black";
 
-    canv.width = width;
-    canv.height = height;
+    canv.width = this.width;
+    canv.height = this.height;
     this.ctx.fillRect(0, 0, canv.width, canv.height);
 
-    this.drawNames(columns);
+    this.drawNames(length);
   }
 
   drawNames(length) {

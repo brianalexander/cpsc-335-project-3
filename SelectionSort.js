@@ -5,6 +5,10 @@ class SelectionSort {
     this.min = 0;
     this.length = toSort.length;
     this.current = 1;
+    
+    this.a = 0;
+    this.b = 0;
+
   }
 
   step() {
@@ -32,8 +36,10 @@ class SelectionSort {
         this.swap(this.arr, this.index, this.min);
         this.index++;
         this.min = this.index;
-        this.current = this.index + 1;
+        this.current = this.index+1;
+        return 3;
       }
+      
     }
   }
 
@@ -41,5 +47,7 @@ class SelectionSort {
     var temp = arr[firstIndex];
     arr[firstIndex] = arr[secondIndex];
     arr[secondIndex] = temp;
+    this.a = firstIndex;
+    this.b = secondIndex;
   }
 }
