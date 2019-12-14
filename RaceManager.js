@@ -22,7 +22,7 @@ class RaceManager {
    * @returns {None}
    */
   start() {
-    this.GUIManager.init(1520, 800, 12);
+    this.GUIManager.init(12);
 
     for (const algorithm in this.algorithms) {
       console.log(
