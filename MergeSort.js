@@ -7,6 +7,8 @@ class MergeSort {
     this.array = toSort;
 
     this.firstRun = true;
+
+    this.a = this.b = 0;
   }
 
   /**
@@ -62,10 +64,10 @@ class MergeSort {
 
       // Null out working values of this.arr
       for (let i = this.startIndex1; i < this.endIndex1; i++) {
-        this.arr[i] = null;
+        this.arr[i] = "";
       }
       for (let i = this.startIndex2; i < this.endIndex2; i++) {
-        this.arr[i] = null;
+        this.arr[i] = "";
       }
 
       return 3;
