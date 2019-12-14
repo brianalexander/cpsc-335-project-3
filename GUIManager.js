@@ -6,9 +6,8 @@ class GUIManager {
 
     this.row = new Array(numberOfAlgorithms);
 
-    for(let i = 0; i < this.row.length; i++){
+    for (let i = 0; i < this.row.length; i++) {
       this.row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
-
     }
 
     this.col = new Array(numberOfAlgorithms);
@@ -89,11 +88,7 @@ class GUIManager {
     this.oldArray = newArray;
   }
 
-  highlight(id, index, val) {
-    this.highlightHelper(id, index, val);
-  }
-
-  highlightHelper(id, index, val, ctx = this.ctx) {
+  highlight(id, index, val, ctx = this.ctx) {
     ctx.clearRect(
       this.col[id] + index * this.sqr,
       this.row[id],
@@ -136,11 +131,7 @@ class GUIManager {
     this.drawArray(id, array);
   }
 
-  drawArray(id, array) {
-    this.drawArrayHelper(id, array);
-  }
-
-  drawArrayHelper(id, array, ctx = this.ctx) {
+  drawArray(id, array, ctx = this.ctx) {
     ctx.beginPath();
     ctx.fillStyle = "#ffffff"; // white
     ctx.strokeStyle = "#000000"; // black(dont need this since canvas is set to black)
