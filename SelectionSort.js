@@ -1,4 +1,4 @@
-class SelectionSort {
+class SelectionSortTest {
   constructor(toSort) {
     this.arr = toSort;
     this.index = 0;
