@@ -73,12 +73,16 @@ class MergeSort {
       return 3;
     }
 
+    this.a = this.arrWorkingIndex;
+    this.b = this.arrWorkingIndex;
+
     // i is finished, add the next j
     if (this.i >= this.array1.length) {
       this.workingArray.push(this.array2[this.j]);
       this.arr[this.arrWorkingIndex] = this.array2[this.j];
       this.arrWorkingIndex++;
       this.j++;
+
       return 2;
     }
 
