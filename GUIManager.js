@@ -1,18 +1,22 @@
 class GUIManager {
   constructor(width, height, numberOfAlgorithms) {
-    let row = new Array(numberOfAlgorithms);
-    for (i = 0; i < row.size(); i++) {
-      row[i] = 0; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
+    this.width = width;
+    this.height = height;
+    this.numberOfAlgorithms = numberOfAlgorithms;
+
+    this.row = new Array(numberOfAlgorithms);
+    for(let i = 0; i < this.row.length; i++){
+      this.row[i] = 40; // we wont want this to start at 0 since we will want to put text above each saying what alg it is
     }
 
-    let col = new Array(numberOfAlgorithms);
+    this.col = new Array(numberOfAlgorithms);
     let pix = 0;
-    for (i = 0; i < col.size(); i++) {
-      col[i] = pix;
+    for(let i = 0; i < this.col.length; i++){
+      this.col[i] = pix;
       pix += 520; // still finding arithmetic to get the right pixel increment given numalg and canvas.width
     }
 
-    let sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
+    this.sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
   }
   /**
    * @function
@@ -30,11 +34,29 @@ class GUIManager {
     document.body.appendChild(canvas);
 
     let canv = document.getElementById("globalCanvas");
-    let ctx = canv.getContext("2d");
-    ctx.fillStyle = "black";
+    
+    this.ctx = canv.getContext("2d");
+    this.ctx.fillStyle = "black";
+
     canv.width = width;
-    cant.height = height;
-    ctx.fillRect(0, 0, canv.width, canv.height);
+    canv.height = height;
+    this.ctx.fillRect(0, 0, canv.width, canv.height);
+
+    this.drawNames(columns);
+  }
+
+  drawNames(length) {
+    this.ctx.beginPath();
+    this.ctx.fillStyle = "#ffffff";  // white
+    this.ctx.font = "20px Arial Black";
+    this.ctx.fillText("Merge", this.col[0] + (length/2) * this.sqr - this.sqr/2, 22);
+    this.ctx.fillText("Quick", this.col[1] + (length/2) * this.sqr - this.sqr/2, 22);
+    this.ctx.fillText("Select", this.col[2] + (length/2) * this.sqr - this.sqr/2, 22);
+    // this.ctx.fillText("Merge", 80, 10);
+    // this.ctx.fillText("Quick", 160, 10);
+    // this.ctx.fillText("Select", 240, 10);
+    this.ctx.fill();
+    this.ctx.stroke();
   }
 
   /**
@@ -53,28 +75,28 @@ class GUIManager {
     this.oldArray = newArray;
   }
 
-  highlight(id, index, val) {
-    switch (id) {
-      case 0:
-        highlightHelper(id, index, val);
-      case 1:
-        highlightHelper(id, index, val);
-      case 2:
-        highlightHelper(id, index, val);
-    }
+
+  highlight(id, index, val){
+    this.highlightHelper(id, index, val);
   }
 
-  highlightHelper(id, index, val) {
-    ctx.clearRect(col[id] + index * sqr, row[id], sqr, sqr); // clear the un-highlighted sqr
-    ctx.strokeStyle = "#ffff00"; // yellow
-    ctx.fillStyle = "#ffffff"; // white
+  highlightHelper(id, index, val, ctx = this.ctx) {
+    ctx.clearRect(this.col[id] + (index * this.sqr), this.row[id], this.sqr, this.sqr);  // clear the un-highlighted sqr
+    ctx.strokeStyle = "#ffff00";  // yellow
+    ctx.fillStyle = "#ffffff";  // white
     ctx.save();
     ctx.beginPath();
-    ctx.rect(col[id] + index * sqr, row[id], sqr, sqr); // place the new highlighted sqr
-    ctx.fillText(val, col[id] + index * sqr + sqr / 2, row[id] + sqr / 2); // place the index value in the middle of sqr
+    ctx.rect(this.col[id] + (index * this.sqr), this.row[id], this.sqr, this.sqr); // place the new highlighted sqr
+
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
+    ctx.restore();
+    ctx.save();
+    ctx.fillStyle = "#000000";  // black
+    ctx.font = "20px Arial Black";
+    ctx.stroke();
+    ctx.fillText(val, this.col[id] + (index * this.sqr) + (this.sqr / 2), this.row[id] + (this.sqr / 2));  // place the index value in the middle of sqr
     ctx.restore();
   }
 
@@ -88,31 +110,34 @@ class GUIManager {
    */
   addRow(id, array) {
     this.oldArray = array;
-    row[id]++;
+    this.row[id]++;
     this.drawArray(id, array);
   }
 
-  drawArray(id, array) {
-    switch (id) {
-      case 1:
-        drawArrayHelper(id, array);
-      case 2:
-        drawArrayHelper(id, array);
-      case 3:
-        drawArrayHelper(id, array);
-    }
+  drawArray(id, array){
+    this.drawArrayHelper(id, array);
   }
 
-  drawArrayHelper(id, array) {
-    ctx.fillStyle = "#ffffff"; // white
-    ctx.strokeStyle = "#000000"; // black(dont need this since canvas is set to black)
-    var pixel = col[id]; // get the algorithm's start pixel
-    for (i = 0; i < array.size(); i++) {
-      ctx.rect(pixel + i * sqr, row[id], sqr, sqr); // place the sqr
-      ctx.fillText(array[i], pixel + i * sqr + sqr / 2, row[id] + sqr / 2); // place the index value inside the sqr
-      pixel += sqr; // get the coordinate for the next sqr
+  drawArrayHelper(id, array, ctx = this.ctx) {
+    ctx.beginPath();
+    ctx.fillStyle = "#ffffff";  // white
+    ctx.strokeStyle = "#000000";  // black(dont need this since canvas is set to black)
+    var pixel = this.col[id];  // get the algorithm's start pixel
+    for (let i = 0; i < array.length; i++) {
+      ctx.rect(pixel + (i * this.sqr), this.row[id], this.sqr, this.sqr); // place the sqr
+      //pixel += this.sqr; // get the coordinate for the next sqr
       ctx.fill();
       ctx.stroke();
     }
+
+    for (let i = 0; i < array.length; i++) {
+      ctx.save();
+      ctx.fillStyle = "#000000";  // black
+      ctx.font = "20px Arial Black";
+      ctx.stroke();
+      ctx.fillText(array[i], pixel + (i * this.sqr) + (this.sqr / 2), this.row[id] + (this.sqr / 2)); // place the index value inside the sqr
+      ctx.restore();
+    }
   }
 }
+
