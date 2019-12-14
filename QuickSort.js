@@ -57,6 +57,7 @@ class QuickSort {
   step() {
     //Check if partition is only one index,
     if (this.queue[0][0] >= this.queue[0][1]) {
+      this.a = this.b = this.queue[0][0];
       //Set up next partition
       return this.nextItem();
     }
