@@ -1,6 +1,5 @@
 class GUIManager {
   constructor(width, height, numberOfAlgorithms) {
-
     this.width = width;
     this.height = height;
     this.numberOfAlgorithms = numberOfAlgorithms;
@@ -18,7 +17,6 @@ class GUIManager {
     }
 
     this.sqr = 40; // still finding arithmetic to get sqr width given numalg and width, height of canvas
-
   }
   /**
    * @function
@@ -36,8 +34,10 @@ class GUIManager {
     document.body.appendChild(canvas);
 
     let canv = document.getElementById("globalCanvas");
+    
     this.ctx = canv.getContext("2d");
     this.ctx.fillStyle = "black";
+
     canv.width = width;
     canv.height = height;
     this.ctx.fillRect(0, 0, canv.width, canv.height);
@@ -70,10 +70,11 @@ class GUIManager {
    */
   updateRow(id, a, b, newArray) {
     this.highlight(id, a, this.oldArray[a]);
-    this.highlight(id, b, this.oldArray[b])
-    this.drawArray(id, newArray)
+    this.highlight(id, b, this.oldArray[b]);
+    this.drawArray(id, newArray);
     this.oldArray = newArray;
   }
+
 
   highlight(id, index, val){
     this.highlightHelper(id, index, val);
@@ -86,6 +87,7 @@ class GUIManager {
     ctx.save();
     ctx.beginPath();
     ctx.rect(this.col[id] + (index * this.sqr), this.row[id], this.sqr, this.sqr); // place the new highlighted sqr
+
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
