@@ -105,12 +105,3 @@ class MergeSort {
     }
   }
 }
-
-class SelectionSort {
-  constructor(toSort) {
-    //implement state as a stack to keep track of state
-    this.i = 0;
-    this.j = 0;
-    this.min = 0;
-  }
-}
