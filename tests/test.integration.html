@@ -1,0 +1,22 @@
+<html>
+  <meta charset="utf-8" />
+</html>
+
+<script src="../MergeSort.js"></script>
+<script src="../QuickSort.js"></script>
+<script src="../SelectionSort.js"></script>
+<script src="../RaceManager.js"></script>
+<script src="../GUIManager.js"></script>
+
+<script>
+  let arr = ["0", "B", "A", "3", "2", "8", "4", "7", "6", "5", "1", "9"];
+  let GUI = new GUIManager(1800, 800, 3);
+  let algos = {
+    MergeSort: new MergeSort(arr),
+    QuickSort: new QuickSort(arr),
+    SelectionSort: new SelectionSort(arr)
+  };
+
+  let raceManager = new RaceManager(GUI, algos);
+  raceManager.start();
+</script>
