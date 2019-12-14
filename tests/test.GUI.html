@@ -10,10 +10,10 @@
 
 
 <script>
-let GUI = new GUIManager(1800, 800, 3);
+let GUI = new GUIManager(1520, 800, 3);
 let arr = ['0', 'B', 'A', '3', '2', '8', '4', '7', '6', '5', '1', '9'];
 let algo = [new MergeSort(arr), new QuickSort(arr), new SelectionSort(arr)];
-GUI.init(1520, 800, 12);
+GUI.init(12);
 GUI.addRow(0, algo[0].arr);
 GUI.addRow(1, algo[1].arr);
 GUI.addRow(2, algo[2].arr);
